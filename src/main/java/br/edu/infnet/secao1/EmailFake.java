@@ -1,9 +1,9 @@
-package br.edu.infnet;
+package br.edu.infnet.secao1;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmailFake implements ServicoEmail{
+public class EmailFake implements ServicoEmail {
     private List<String> mensagens = new ArrayList<>();
     @Override
     public void enviar(String destinatario, String mensagem) {

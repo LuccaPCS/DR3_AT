@@ -1,5 +1,6 @@
-package br.edu.infnet;
+package br.edu.infnet.secao1;
 
+import br.edu.infnet.secao1.Calculadora;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

@@ -1,4 +1,4 @@
-package br.edu.infnet;
+package br.edu.infnet.secao1;
 
 public class GeradorDeUsuarios {
     public static Usuario criarUsuario(String nome, int idade) {

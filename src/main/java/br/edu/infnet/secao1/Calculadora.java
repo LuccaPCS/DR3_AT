@@ -1,4 +1,4 @@
-package br.edu.infnet;
+package br.edu.infnet.secao1;
 
 public class Calculadora {
     public int somar(int a, int b) {

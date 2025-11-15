@@ -1,4 +1,4 @@
-package br.edu.infnet;
+package br.edu.infnet.secao2;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
