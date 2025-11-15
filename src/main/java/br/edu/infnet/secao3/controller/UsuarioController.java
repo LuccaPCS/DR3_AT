@@ -15,17 +15,22 @@ public class UsuarioController {
     private static UsuarioRepository usuarioRepository =  new UsuarioRepository();
 
     public static Handler listarTodos = ctx -> {
-        List<Usuario> usuarios = usuarioRepository.listarTodos();
-        ctx.json(usuarios);
+        try {
+            List<Usuario> usuarios = usuarioRepository.listarTodos();
+            ctx.json(usuarios);
+            ctx.status(200);
+        } catch (Exception e) {
+            ctx.status(404);
+        }
     };
 
     public static Handler obterPorId = ctx -> {
-        int id = Integer.parseInt(Objects.requireNonNull(ctx.param("id")));
-        Optional<Usuario> usuario = usuarioRepository.buscarPorId(id);
-        if (usuario.isPresent()) {
-            ctx.json(usuario.get());
+        long id = Long.parseLong(Objects.requireNonNull(ctx.param("id")));
+        try {
+            Optional<Usuario> usuario = usuarioService.buscarUsuarioPorId(id);
+            ctx.json(usuario);
             ctx.status(200);
-        } else {
+        } catch (IllegalArgumentException  e) {
             ctx.status(404);
         }
     };
@@ -42,6 +47,12 @@ public class UsuarioController {
     };
 
     public static Handler deletarUsuario = ctx -> {
-
+        long id = Long.parseLong(Objects.requireNonNull(ctx.param("id")));
+        try {
+            usuarioService.deletarUsuarioPorId(id);
+            ctx.status(204);
+        } catch (IllegalArgumentException  e) {
+            ctx.status(404);
+        }
     };
 }

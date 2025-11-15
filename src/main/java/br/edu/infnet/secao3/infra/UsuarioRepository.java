@@ -18,7 +18,7 @@ public class UsuarioRepository {
         return usuarios;
     }
 
-    public Optional<Usuario> buscarPorId(int id) {
+    public Optional<Usuario> buscarPorId(long id) {
         return usuarios.stream().filter(u -> u.getId() == id).findAny();
     }
 
@@ -27,4 +27,8 @@ public class UsuarioRepository {
         usuarios.add(novoUsuario);
         return novoUsuario;
     }
+
+    public boolean deletar(long id) {
+        return usuarios.removeIf(u -> u.getId() == id);
+    };
 }
