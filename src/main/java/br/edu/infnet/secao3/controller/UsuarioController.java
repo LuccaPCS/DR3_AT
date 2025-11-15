@@ -6,9 +6,12 @@ import br.edu.infnet.secao3.infra.UsuarioRepository;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+
+import br.edu.infnet.secao3.infra.UsuarioService;
 import io.javalin.Handler;
 
 public class UsuarioController {
+    private static UsuarioService usuarioService = new UsuarioService();
     private static UsuarioRepository usuarioRepository =  new UsuarioRepository();
 
     public static Handler listarTodos = ctx -> {
@@ -21,15 +24,21 @@ public class UsuarioController {
         Optional<Usuario> usuario = usuarioRepository.buscarPorId(id);
         if (usuario.isPresent()) {
             ctx.json(usuario.get());
+            ctx.status(200);
         } else {
-            ctx.html("Not found");
+            ctx.status(404);
         }
     };
 
     public static Handler inserirUsuario = ctx -> {
         Usuario novoUsuario = ctx.bodyAsClass(Usuario.class);
-        novoUsuario = usuarioRepository.inserir(novoUsuario);
-        ctx.json(novoUsuario);
+        try {
+            novoUsuario = usuarioService.cadastrarUsuario(novoUsuario);
+            ctx.json(novoUsuario);
+            ctx.status(201);
+        } catch(IllegalArgumentException e) {
+            ctx.status(400);
+        }
     };
 
     public static Handler deletarUsuario = ctx -> {
