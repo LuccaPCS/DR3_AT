@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class EmailFakeTest {
-    private EmailFake email = new EmailFake();
+    private EmailFake email;
 
     @BeforeEach
     void setUp() { email = new EmailFake(); }

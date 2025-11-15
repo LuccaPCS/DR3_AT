@@ -18,7 +18,7 @@ public class UsuarioService {
         if (usuario.getId() > 0) {
             throw new IllegalArgumentException("ID inválido");
         }
-        if (usuario.getNome() == null || usuario.getNome().split(" ").length < 2) {
+        if (usuario.getNome() == null) {
             throw new IllegalArgumentException("Nome inválido");
         }
         if (usuario.getEmail() == null || !usuario.getEmail().matches("^[\\w\\.-]+@[\\w\\.-]+\\.[a-zA-Z]{2,}$")) {
